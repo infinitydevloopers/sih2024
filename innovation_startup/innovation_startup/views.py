@@ -1,12 +1,12 @@
 from  django.http import  HttpResponse,  HttpResponseRedirect
 from django.shortcuts import render
 
-def homepage(request):
+# def homepage(request):
 
-    return render(request,"index.html")
+#     return render(request,"index.html")
 
-def login_view(request):
-    return render(request, 'login.html')
+# def login_view(request):
+#     return render(request, 'login.html')
 
-def signup_view(request):
-    return render(request, 'signup.html')
+# def signup_view(request):
+#     return render(request, 'signup.html')
