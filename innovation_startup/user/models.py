@@ -1,7 +1,4 @@
 from django.db import models
-
-# Create your models here.
-from django.db import models
 import random
 
 class User(models.Model):
@@ -20,6 +17,7 @@ class User(models.Model):
     phone_no = models.CharField(max_length=15)
     updated_at = models.DateTimeField(auto_now=True)
     last_logged_in_at = models.DateTimeField(null=True, blank=True)
+    last_login = models.DateTimeField(null=True, blank=True)  # Add this field
     address = models.TextField()
     citizenship = models.CharField(max_length=100)
 
