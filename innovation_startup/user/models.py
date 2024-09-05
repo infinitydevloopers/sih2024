@@ -4,9 +4,13 @@ import random
 class User(models.Model):
     ROLE_CHOICES = [
         (0, 'Researcher'),
-        (1, 'Entrepreneur'),
-        (2, 'Company'),
-        (3, 'Accelerator'),
+        (1, 'Entrepreneur'),       
+        (2, 'Mentor'),
+(3, 'Advisor'),
+(4, 'Investor'),
+(5, 'Funding Agency'),
+(6, 'Government official'),
+(7, 'Legal Advisor'),
     ]
 
     id = models.CharField(primary_key=True, max_length=12, editable=False, unique=True)

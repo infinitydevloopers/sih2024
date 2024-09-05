@@ -3,8 +3,10 @@ from django.shortcuts import render
 # Create your views here.
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from .forms import SignupForm, LoginForm
+from .forms import SignupForm, LoginForm, ResearchForm,InnovationForm
 from .models import User
+
+
 
 
 
@@ -143,3 +145,38 @@ def login_view(request):
 def dashboard_view(request):
     print(f"User authenticated: {request.user.is_authenticated}")  # Debug line
     return render(request, 'dashboard.html')
+
+#research
+def research_create_view(request):
+    if request.method == 'POST':
+        form = ResearchForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Re-render the form with a success message
+            return render(request, 'create-research.html', {'form': form, 'success': True})
+        else:
+            # Re-render the form with errors
+            return render(request, 'create-research.html', {'form': form, 'success': False})
+    else:
+        form = ResearchForm()
+    
+    return render(request, 'create-research.html', {'form': form})
+
+
+#innovation
+def innovation_create_view(request):
+    if request.method == 'POST':
+        form = InnovationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Re-render the form with a success message
+            return render(request, 'innovation_form.html', {'form': form, 'success': True})
+        else:
+            # Re-render the form with errors
+            return render(request, 'innovation_form.html', {'form': form, 'success': False})
+    else:
+        form = InnovationForm()
+    
+    return render(request, 'innovation_form.html', {'form': form, 'success': False})
+
+
