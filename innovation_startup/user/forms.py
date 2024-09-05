@@ -81,3 +81,36 @@ class InvestmentAdminForm(forms.ModelForm):
                 ('Development', 'Development'),
                 ('Deployed', 'Deployed')
             ]
+
+from django import forms
+from .models import Event
+
+class EventForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ['event_id', 'event_name', 'description', 'date', 'location', 'created_by', 'event_summary']
+        widgets = {
+            'date': forms.DateInput(attrs={'type': 'date'}),
+            'created_at': forms.DateInput(attrs={'type': 'datetime-local'}),
+            'updated_at': forms.DateInput(attrs={'type': 'datetime-local'}),
+        }
+
+from django import forms
+from .models import Startup
+
+class StartupForm(forms.ModelForm):
+    class Meta:
+        model = Startup
+        fields = ['startup_id', 'name', 'description', 'logo', 'incorporation_date', 'status']
+        widgets = {
+            'incorporation_date': forms.DateInput(attrs={'type': 'date'}),
+            'created_at': forms.DateInput(attrs={'type': 'datetime-local'}),
+            'updated_at': forms.DateInput(attrs={'type': 'datetime-local'}),
+        }
+from django import forms
+from .models import EventParticipants
+
+class EventParticipantsForm(forms.ModelForm):
+    class Meta:
+        model = EventParticipants
+        fields = ['id', 'event', 'user', 'role']

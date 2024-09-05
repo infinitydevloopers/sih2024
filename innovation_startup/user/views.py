@@ -180,3 +180,34 @@ def innovation_create_view(request):
     return render(request, 'innovation_form.html', {'form': form, 'success': False})
 
 
+from django.shortcuts import render, redirect
+from .forms import EventParticipantsForm, StartupForm
+from .models import EventParticipants, Startup
+
+# View for Event Participants
+def create_event_participant(request):
+    if request.method == 'POST':
+        form = EventParticipantsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('event_participant_success')  # Redirect to a success page
+    else:
+        form = EventParticipantsForm()
+    return render(request, 'create_event_participant.html', {'form': form})
+
+# View for Startup
+def create_startup(request):
+    if request.method == 'POST':
+        form = StartupForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('startup_success')  # Redirect to a success page
+    else:
+        form = StartupForm()
+    return render(request, 'create_startup.html', {'form': form})
+
+def event_participant_success(request):
+    return render(request, 'event_participant_success.html')
+
+def startup_success(request):
+    return render(request, 'startup_success.html')
